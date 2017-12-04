@@ -12,10 +12,22 @@ $(document).on('pageinit', function() {
 
 
 	$('#notificationButton').on('click', function() {
-		createNotification();
+		createNotification(
+			"Work Hours!",
+			"How long have you been working without a break?",
+			dialogDismissed,
+			['More than 3 hours', 'Less than 3 hours']
+		);
 	});
 
-
+	$('#dialogHungry').on('click', function() {
+		createNotification(
+			"Are you hungry?",
+			"Would you like to take a break and grab some food?",
+			dialogDismissedHungry,
+			['Yes I\'m super hungry!', 'Nah I\'m good!']
+		);
+	})
 });
 
 
@@ -27,7 +39,7 @@ function createMessage(){
 }
 
 
-function createDialog() {
+function createDialog(title, message, callback, buttons) {
 
 	//phonegap supports native dialog boxes.
 	//here's a simple example
@@ -68,17 +80,45 @@ function dialogDismissed(buttonIndex) {
 	}
 }
 
+function dialogDismissedHungry(buttonIndex) {
 
-function scheduleNotification(notificationTitle, notificationMessage, waitTime) {
+	if(buttonIndex==1) {
+		new Toast({
+			content: "Cool go have a food break!",
+			duration: 3000
+		});
+	}	else if(buttonIndex==2) {
+		new Toast({
+			content: 'Good! Just what I like to hear as your manager!',
+			duration: 3000
+		});
+		scheduleNotification(
+			"Do you want a break?",
+			"You said 30 seconds ago you don't want a break? what about now?",
+			30000,
+			{actions: [
+					{id: "yes", title: "On second thoughts...YES!"},
+					{id: "no", title: "I already told you im good!"}
+				]}
+		)
+	}
+}
+
+
+function scheduleNotification(notificationTitle, notificationMessage, waitTime, additionalArguments) {
 	var currentTime = new Date().getTime();
 	var notificationTime = new Date(currentTime + waitTime);
 
-	cordova.plugins.notification.local.schedule({
+	options = {
 		id: 1,
 		title: notificationTitle,
 		message: notificationMessage,
 		date: notificationTime
-	})
+	}
+
+	Object.assign(options, additionalArguments);
+
+	cordova.plugins.notification.local.schedule(options)
 }
 
 
