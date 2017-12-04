@@ -45,10 +45,10 @@ function createDialog(title, message, callback, buttons) {
 	//here's a simple example
 
 	navigator.notification.confirm(
-    	'How long have you been working without a break?',  // message
-        callback,         // callback
-        'Work hours!',            // title
-        ['More than 3 hours', 'Less than 3 hours']                  // buttons
+    	message,  // message
+      callback,         // callback
+      title,            // title
+      buttons                  // buttons
     );
 
 }
