@@ -17,8 +17,7 @@
         Gino Cubeddu
     </author>
 
-
-
+    <plugin name="cordova-plugin-dialogs" spec="~1.3.4" />
 	<!-- required plugins go here -->
 
 
