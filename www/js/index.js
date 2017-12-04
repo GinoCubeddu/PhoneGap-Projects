@@ -20,7 +20,7 @@ $(document).on('pageinit', function() {
 		);
 	});
 
-	$('#dialogHungry').on('click', function() {
+	$('#dialogButtonHungry').on('click', function() {
 		createNotification(
 			"Are you hungry?",
 			"Would you like to take a break and grab some food?",
