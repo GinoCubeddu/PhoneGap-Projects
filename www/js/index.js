@@ -33,10 +33,10 @@ function createDialog() {
 	//here's a simple example
 
 	navigator.notification.confirm(
-    	'What do you think of this dialog?',  // message
+    	'How long have you been working without a break?',  // message
         dialogDismissed,         // callback
-        'An example dialog!',            // title
-        ['Awesome!', 'Sucks']                  // buttons
+        'Work hours!',            // title
+        ['More than 3 hours', 'Less than 3 hours']                  // buttons
     );
 
 }
@@ -45,9 +45,17 @@ function createDialog() {
 
 function dialogDismissed(buttonIndex) {
 
-	if(buttonIndex==1) new Toast({content: "You're easily pleased", duration: 3000});
-   	else if(buttonIndex==2) new Toast({content: 'It is rather boring.', duration: 3000});
-
+	if(buttonIndex==1) {
+		new Toast({
+			content: "You should take a break and have something to eat!",
+			duration: 3000
+		});
+	}	else if(buttonIndex==2) {
+		new Toast({
+			content: 'You need to work for longer before taking a break!',
+			duration: 3000
+		});
+	}
 }
 
 
