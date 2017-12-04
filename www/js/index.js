@@ -7,12 +7,7 @@ $(document).on('pageinit', function() {
 	});
 
 	$('#dialogButton').on('click', function() {
-		createDialog();
-	});
-
-
-	$('#notificationButton').on('click', function() {
-		createNotification(
+		createDialog(
 			"Work Hours!",
 			"How long have you been working without a break?",
 			dialogDismissed,
@@ -20,8 +15,13 @@ $(document).on('pageinit', function() {
 		);
 	});
 
+
+	$('#notificationButton').on('click', function() {
+		createNotification();
+	});
+
 	$('#dialogButtonHungry').on('click', function() {
-		createNotification(
+		createDialog(
 			"Are you hungry?",
 			"Would you like to take a break and grab some food?",
 			dialogDismissedHungry,
