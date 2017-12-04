@@ -46,7 +46,7 @@ function createDialog(title, message, callback, buttons) {
 
 	navigator.notification.confirm(
     	'How long have you been working without a break?',  // message
-        dialogDismissed,         // callback
+        callback,         // callback
         'Work hours!',            // title
         ['More than 3 hours', 'Less than 3 hours']                  // buttons
     );
@@ -92,6 +92,7 @@ function dialogDismissedHungry(buttonIndex) {
 			content: 'Good! Just what I like to hear as your manager!',
 			duration: 3000
 		});
+		console.log("IM HERE")
 		scheduleNotification(
 			"Do you want a break?",
 			"You said 30 seconds ago you don't want a break? what about now?",
