@@ -50,14 +50,36 @@ function dialogDismissed(buttonIndex) {
 			content: "You should take a break and have something to eat!",
 			duration: 3000
 		});
+		scheduleNotification(
+			"Are you back from your break?",
+			"You have been on a break for 30 seconds now you should be back at work!!",
+			30000
+		)
 	}	else if(buttonIndex==2) {
 		new Toast({
 			content: 'You need to work for longer before taking a break!',
 			duration: 3000
 		});
+		scheduleNotification(
+			"Is it time for a break?",
+			"You told me you had been working for less than 3 hours! Has it passed that time?",
+			30000
+		)
 	}
 }
 
+
+function scheduleNotification(notificationTitle, notificationMessage, waitTime) {
+	var currentTime = new Date().getTime();
+	var notificationTime = new Date(currentTime + waitTime);
+
+	cordova.plugins.notification.local.schedule({
+		id: 1,
+		title: notificationTitle,
+		message: notificationMessage,
+		date: notificationTime
+	})
+}
 
 
 function createNotification() {
